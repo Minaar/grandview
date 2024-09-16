@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\InvoiceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +21,22 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::prefix('rooms')->group(function () {
+    Route::get('/', [RoomController::class, 'index'])->name('rooms.index');
+    Route::get('/add', [RoomController::class, 'add'])->name('rooms.add');
+    Route::get('/guest', [RoomController::class, 'guest'])->name('rooms.guest');
+});
+
+Route::prefix('reservation')->group(function () {
+    Route::get('/', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/add', [ReservationController::class, 'add'])->name('reservation.add');
+ 
+});
+
+Route::prefix('invoice')->group(function () {
+    Route::get('/', [InvoiceController::class, 'index'])->name('invoice.index');
+    Route::get('/add', [InvoiceController::class, 'add'])->name('invoice.add');
+ 
+});
+
