@@ -17,30 +17,51 @@
             <div id="sidebar-list" class="row contact-sidenav ml-0 mr-0">
                 <div class="col s12 m12 l8 contact-form margin-top-contact">
                     <div class="row">
-                        <form class="col s12">
+                        <form action="{{ route('rooms.store') }}" method="POST" class="col s12">
+                            @csrf
                             <div class="row">
                                 <div class="input-field col m6 s12">
-                                    <input id="name" type="text" class="validate">
-                                    <label for="name">Room Type</label>
+                                    <select class="" name="type_id" id="type_id" required>
+                                        <option value="">Select Type</option>
+                                        @foreach ($types as $type)
+                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="type_id">Room Type</label>
                                 </div>
                                 <div class="input-field col m6 s12">
-                                    <input id="email" type="text" class="validate">
-                                    <label for="email">Room No</label>
+                                    <input id="room_number" name="room_number" type="text" class="validate" required>
+                                    <label for="room_number">Room No</label>
+                                </div>
+
+                                <div class="input-field col m6 s12">
+                                    <select class="" name="has_ac" id="has_ac" required>
+                                        <option value="">Select Air Condition</option>
+                                            <option value="true"> Yes </option>
+                                            <option value="false"> No </option>
+                                        </select>
+                                    <label for="has_ac">Air Condition</label>
+                                </div>
+
+                                <div class="input-field col m6 s12">
+                                    <input id="total_bed" name="total_bed" type="number" class="validate" required>
+                                    <label for="total_bed">No of Bed</label>
                                 </div>
                             </div>
+                            
                             <div class="row">
                                 <div class="input-field col m6 s12">
-                                    <input id="company" type="text" class="validate">
-                                    <label for="company">Price</label>
+                                    <input id="price" name="price" type="number" class="validate" required>
+                                    <label for="price">Price</label>
                                 </div>
                                 <div class="input-field col m6 s12">
-                                    <input id="budget" type="text" class="validate">
-                                    <label for="budget">Floor</label>
+                                    <input id="floor" name="floor" type="text" class="validate" required>
+                                    <label for="floor">Floor</label>
                                 </div>
                                 <div class="input-field col s12 width-100">
-                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                    <label for="textarea1">Remarks</label>
-                                    <a class="waves-effect waves-light btn">Add</a>
+                                    <textarea id="remark" name="remark" class="materialize-textarea"></textarea>
+                                    <label for="remark">Remarks (Optional)</label>
+                                    <button type="submit" class="waves-effect waves-light btn">Add</button>
                                 </div>
                             </div>
                         </form>

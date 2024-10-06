@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RoomType;
 
 class RoomController extends Controller
 {
@@ -13,8 +14,16 @@ class RoomController extends Controller
 
     public function add ()
     {
-        return view('rooms.add');
+        $types = RoomType::all();
+        return view('rooms.add', compact(['types']));
     }
+
+    public function store (Request $request)
+    {
+        dd($request);
+        return view('rooms.store');
+    }
+
     public function guest ()
     {
         return view('rooms.guest');

@@ -25,6 +25,7 @@ require __DIR__.'/auth.php';
 Route::prefix('rooms')->group(function () {
     Route::get('/', [RoomController::class, 'index'])->name('rooms.index');
     Route::get('/add', [RoomController::class, 'add'])->name('rooms.add');
+    Route::post('/store', [RoomController::class, 'store'])->name('rooms.store');
     Route::get('/guest', [RoomController::class, 'guest'])->name('rooms.guest');
 });
 
